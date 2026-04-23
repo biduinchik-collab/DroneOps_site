@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-void: #060810;
+  --color-obsidian: #0a0d12;
+  --color-navy: #0f1923;
+  --color-panel: #111c29;
+  --color-signal: #1a8fd1;
+  --color-steel: #4a7a9b;
+  --color-mist: #8fb4cc;
+  --color-cloud: #edf0f4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(26, 143, 209, 0.08), transparent 32rem),
+    var(--color-void);
+  color: var(--color-cloud);
+  font-family: var(--font-barlow), Arial, sans-serif;
+  text-rendering: geometricPrecision;
+}
+
+::selection {
+  background: rgba(26, 143, 209, 0.36);
+  color: #ffffff;
+}
+
+@layer base {
+  a,
+  button,
+  input,
+  textarea,
+  select {
+    @apply outline-none;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible,
+  summary:focus-visible {
+    @apply ring-2 ring-signal ring-offset-2 ring-offset-void;
+  }
+}
+
+@layer components {
+  .site-shell {
+    @apply mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12;
+  }
+
+  .section-pad {
+    @apply py-20 sm:py-24 lg:py-28;
+  }
+
+  .technical-grid {
+    background-image:
+      linear-gradient(rgba(26, 143, 209, 0.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26, 143, 209, 0.055) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  .micro-label {
+    @apply font-display text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-signal;
+  }
+
+  .heading-xl {
+    @apply font-display text-5xl font-black uppercase leading-[0.92] text-cloud sm:text-6xl lg:text-7xl;
+  }
+
+  .heading-lg {
+    @apply font-display text-4xl font-bold uppercase leading-none text-cloud sm:text-5xl;
+  }
+
+  .heading-md {
+    @apply font-display text-2xl font-bold uppercase leading-tight text-cloud sm:text-3xl;
+  }
+
+  .body-lead {
+    @apply text-base font-light leading-8 text-mist sm:text-lg;
+  }
+
+  .hairline {
+    @apply border-steel/20;
+  }
+
+  .surface {
+    @apply rounded-lg border border-steel/20 bg-panel/70;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
