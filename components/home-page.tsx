@@ -1,6 +1,9 @@
+import type { CSSProperties } from "react";
+
 import { ButtonLink } from "@/components/button-link";
 import { ContactForm } from "@/components/contact-form";
 import { MissionConsole } from "@/components/mission-console";
+import { MotionRuntime } from "@/components/motion-runtime";
 import { ProductPreview } from "@/components/product-preview";
 import { SectionHeading } from "@/components/section-heading";
 import { SiteFooter } from "@/components/site-footer";
@@ -16,15 +19,16 @@ type HomePageProps = {
 export function HomePage({ locale, dictionary }: HomePageProps) {
   return (
     <>
+      <MotionRuntime />
       <SiteHeader locale={locale} dictionary={dictionary} />
       <main>
-        <section className="relative overflow-hidden border-b border-steel/20 bg-void">
-          <div className="technical-grid absolute inset-0 opacity-70" />
+        <section className="ambient-scan relative overflow-hidden border-b border-steel/20 bg-void">
+          <div className="technical-grid is-animated absolute inset-0 opacity-70" />
           <div className="absolute inset-x-0 top-0 h-px bg-signal/40" />
           <div className="site-shell relative grid gap-12 py-20 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:py-24">
-            <div>
+            <div className="hero-copy">
               <p className="micro-label">{dictionary.hero.eyebrow}</p>
-              <h1 className="heading-xl mt-5 max-w-4xl">{dictionary.hero.title}</h1>
+              <h1 className="heading-xl mt-5 max-w-4xl whitespace-pre-line">{dictionary.hero.title}</h1>
               <p className="body-lead mt-7 max-w-2xl">{dictionary.hero.body}</p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <ButtonLink href={`/${locale}#contact`}>{dictionary.hero.primaryCta}</ButtonLink>
@@ -36,7 +40,7 @@ export function HomePage({ locale, dictionary }: HomePageProps) {
                 {dictionary.hero.proof.map((item) => (
                   <li
                     key={item}
-                    className="rounded-xs border border-steel/20 bg-panel/40 px-3 py-2 font-display text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-mist"
+                    className="hero-chip rounded-xs border border-steel/20 bg-panel/40 px-3 py-2 font-display text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-mist"
                   >
                     {item}
                   </li>
@@ -57,7 +61,12 @@ export function HomePage({ locale, dictionary }: HomePageProps) {
             />
             <div className="mt-12 grid gap-4 lg:grid-cols-3">
               {dictionary.solutions.items.map((item, index) => (
-                <article key={item.name} className="surface p-6 transition duration-200 hover:border-signal/40">
+                <article
+                  key={item.name}
+                  data-reveal="card"
+                  className="surface premium-card p-6"
+                  style={revealDelay(index)}
+                >
                   <TechnicalIcon index={index} />
                   <h3 className="heading-md mt-6">{item.name}</h3>
                   <p className="mt-4 text-base font-light leading-7 text-mist">{item.summary}</p>
@@ -92,6 +101,8 @@ export function HomePage({ locale, dictionary }: HomePageProps) {
               {dictionary.workflow.steps.map((step, index) => (
                 <article
                   key={step.title}
+                  data-reveal="row"
+                  style={revealDelay(index, 70)}
                   className="grid gap-5 border-t border-steel/20 py-6 sm:grid-cols-[120px_1fr] lg:grid-cols-[160px_0.55fr_1fr]"
                 >
                   <p className="font-display text-sm font-semibold uppercase tracking-[0.24em] text-signal">
@@ -116,8 +127,13 @@ export function HomePage({ locale, dictionary }: HomePageProps) {
                 body={dictionary.deployment.body}
               />
               <div className="grid gap-4 sm:grid-cols-2">
-                {dictionary.deployment.options.map((option) => (
-                  <article key={option.title} className="rounded-md border border-steel/20 bg-void/50 p-5">
+                {dictionary.deployment.options.map((option, index) => (
+                  <article
+                    key={option.title}
+                    data-reveal="card"
+                    className="premium-card rounded-md border border-steel/20 bg-void/50 p-5"
+                    style={revealDelay(index, 70)}
+                  >
                     <h3 className="font-display text-xl font-bold uppercase leading-tight tracking-[0.06em] text-cloud">
                       {option.title}
                     </h3>
@@ -134,8 +150,13 @@ export function HomePage({ locale, dictionary }: HomePageProps) {
             <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
               <SectionHeading eyebrow={dictionary.why.eyebrow} title={dictionary.why.title} body={dictionary.why.body} />
               <div className="grid gap-4 sm:grid-cols-2">
-                {dictionary.why.points.map((point) => (
-                  <article key={point.title} className="border-t border-steel/25 pt-5">
+                {dictionary.why.points.map((point, index) => (
+                  <article
+                    key={point.title}
+                    data-reveal="card"
+                    className="premium-card border-t border-steel/25 pt-5"
+                    style={revealDelay(index, 80)}
+                  >
                     <h3 className="font-display text-xl font-bold uppercase leading-tight tracking-[0.06em] text-cloud">
                       {point.title}
                     </h3>
@@ -153,7 +174,7 @@ export function HomePage({ locale, dictionary }: HomePageProps) {
               <SectionHeading eyebrow={dictionary.preview.eyebrow} title={dictionary.preview.title} body={dictionary.preview.body} />
               <div className="hidden h-px bg-signal/40 lg:block" />
             </div>
-            <div className="mt-12">
+            <div className="mt-12" data-reveal="interface">
               <ProductPreview preview={dictionary.preview} />
             </div>
           </div>
@@ -168,8 +189,13 @@ export function HomePage({ locale, dictionary }: HomePageProps) {
               align="center"
             />
             <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {dictionary.useCases.items.map((item) => (
-                <article key={item.title} className="surface p-5">
+              {dictionary.useCases.items.map((item, index) => (
+                <article
+                  key={item.title}
+                  data-reveal="card"
+                  className="surface premium-card p-5"
+                  style={revealDelay(index, 65)}
+                >
                   <div className="mb-5 h-px w-16 bg-signal/50" />
                   <h3 className="font-display text-xl font-bold uppercase leading-tight tracking-[0.06em] text-cloud">
                     {item.title}
@@ -186,8 +212,13 @@ export function HomePage({ locale, dictionary }: HomePageProps) {
             <div className="grid gap-10 lg:grid-cols-[0.75fr_1.25fr]">
               <SectionHeading eyebrow={dictionary.faq.eyebrow} title={dictionary.faq.title} />
               <div className="grid gap-3">
-                {dictionary.faq.items.map((item) => (
-                  <details key={item.question} className="group rounded-md border border-steel/20 bg-panel/50 p-5">
+                {dictionary.faq.items.map((item, index) => (
+                  <details
+                    key={item.question}
+                    data-reveal="row"
+                    className="premium-card group rounded-md border border-steel/20 bg-panel/50 p-5"
+                    style={revealDelay(index, 70)}
+                  >
                     <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-lg font-bold uppercase leading-tight tracking-[0.06em] text-cloud">
                       {item.question}
                       <span className="text-signal transition duration-200 group-open:rotate-45">+</span>
@@ -209,7 +240,7 @@ export function HomePage({ locale, dictionary }: HomePageProps) {
                   title={dictionary.contact.title}
                   body={dictionary.contact.body}
                 />
-                <div className="mt-8 rounded-md border border-steel/20 bg-void/50 p-5">
+                <div className="premium-card mt-8 rounded-md border border-steel/20 bg-void/50 p-5" data-reveal="card">
                   <p className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-steel">
                     {dictionary.contact.direct}
                   </p>
@@ -222,7 +253,7 @@ export function HomePage({ locale, dictionary }: HomePageProps) {
                 </div>
               </div>
 
-              <div className="rounded-lg border border-steel/20 bg-obsidian p-5 shadow-glow sm:p-7">
+              <div className="premium-card rounded-lg border border-steel/20 bg-obsidian p-5 shadow-glow sm:p-7" data-reveal="card">
                 <ContactForm locale={locale} contact={dictionary.contact} common={dictionary.common} />
               </div>
             </div>
@@ -249,4 +280,8 @@ function TechnicalIcon({ index }: { index: number }) {
       </svg>
     </div>
   );
+}
+
+function revealDelay(index: number, step = 90): CSSProperties {
+  return { "--reveal-delay": `${index * step}ms` } as CSSProperties;
 }

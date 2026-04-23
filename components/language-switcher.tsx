@@ -22,8 +22,8 @@ export function LanguageSwitcher({ locale, dictionary }: LanguageSwitcherProps) 
             href={`/${item}`}
             aria-current={active ? "page" : undefined}
             className={[
+              "language-pill",
               "rounded-xs px-2.5 py-1.5 font-display text-[0.72rem] font-bold uppercase tracking-[0.18em]",
-              "transition duration-200",
               active ? "bg-signal text-white" : "text-steel hover:bg-panel hover:text-cloud",
             ].join(" ")}
           >

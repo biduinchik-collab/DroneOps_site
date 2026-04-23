@@ -22,9 +22,9 @@ export function ButtonLink({ href, children, variant = "primary", className = ""
     <Link
       href={href}
       className={[
+        "button-premium",
         "inline-flex min-h-11 items-center justify-center rounded-sm border px-5 py-3",
         "font-display text-sm font-bold uppercase tracking-[0.16em]",
-        "transition duration-200",
         variants[variant],
         className,
       ].join(" ")}

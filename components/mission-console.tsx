@@ -1,3 +1,5 @@
+import type { CSSProperties } from "react";
+
 import type { Dictionary } from "@/lib/i18n/dictionaries";
 
 type MissionConsoleProps = {
@@ -6,11 +8,11 @@ type MissionConsoleProps = {
 
 export function MissionConsole({ visual }: MissionConsoleProps) {
   return (
-    <div className="relative overflow-hidden rounded-lg border border-steel/20 bg-obsidian shadow-glow">
-      <div className="technical-grid absolute inset-0 opacity-80" />
+    <div className="interface-shell relative overflow-hidden rounded-lg border border-steel/20 bg-obsidian shadow-glow">
+      <div className="technical-grid is-animated absolute inset-0 opacity-80" />
       <div className="absolute inset-x-0 top-0 h-px bg-signal/40" />
 
-      <div className="relative flex items-center justify-between border-b border-steel/20 px-4 py-3 sm:px-5">
+      <div className="relative z-10 flex items-center justify-between border-b border-steel/20 px-4 py-3 sm:px-5">
         <div>
           <p className="font-display text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-signal">
             {visual.status}
@@ -20,12 +22,12 @@ export function MissionConsole({ visual }: MissionConsoleProps) {
           </h2>
         </div>
         <div className="hidden items-center gap-2 sm:flex">
-          <span className="h-2 w-2 rounded-full bg-signal" />
+          <span className="status-dot" />
           <span className="font-display text-[0.68rem] uppercase tracking-[0.2em] text-mist">{visual.package}</span>
         </div>
       </div>
 
-      <div className="relative grid gap-4 p-4 lg:grid-cols-[1fr_180px] lg:p-5">
+      <div className="relative z-10 grid gap-4 p-4 lg:grid-cols-[1fr_180px] lg:p-5">
         <div className="relative min-h-[360px] overflow-hidden rounded-md border border-steel/20 bg-void/70">
           <svg
             viewBox="0 0 620 420"
@@ -44,17 +46,31 @@ export function MissionConsole({ visual }: MissionConsoleProps) {
             </defs>
             <rect width="620" height="420" fill="url(#minor-grid)" />
             <rect width="620" height="420" fill="url(#major-grid)" />
-            <path d="M56 348 C134 264 192 278 260 210 C332 138 410 172 560 82" fill="none" stroke="rgba(26,143,209,0.85)" strokeWidth="3" />
-            <path d="M56 348 C134 264 192 278 260 210 C332 138 410 172 560 82" fill="none" stroke="rgba(26,143,209,0.16)" strokeWidth="18" />
+            <path
+              className="route-path"
+              d="M56 348 C134 264 192 278 260 210 C332 138 410 172 560 82"
+              fill="none"
+              pathLength={1}
+              stroke="rgba(26,143,209,0.85)"
+              strokeWidth="3"
+            />
+            <path
+              className="route-path-soft"
+              d="M56 348 C134 264 192 278 260 210 C332 138 410 172 560 82"
+              fill="none"
+              pathLength={1}
+              stroke="rgba(26,143,209,0.16)"
+              strokeWidth="18"
+            />
             <path d="M88 92 L224 54 L332 118 L500 72 L574 160 L458 306 L282 352 L118 296 Z" fill="rgba(26,143,209,0.055)" stroke="rgba(143,180,204,0.18)" strokeWidth="1" />
-            <path d="M152 318 L244 260 L384 282 L510 218" fill="none" stroke="rgba(237,240,244,0.35)" strokeDasharray="7 9" strokeWidth="1.5" />
+            <path className="route-dash" d="M152 318 L244 260 L384 282 L510 218" fill="none" stroke="rgba(237,240,244,0.35)" strokeDasharray="7 9" strokeWidth="1.5" />
             {[
               [56, 348],
               [260, 210],
               [560, 82],
               [384, 282],
             ].map(([cx, cy], index) => (
-              <g key={`${cx}-${cy}`}>
+              <g key={`${cx}-${cy}`} className="route-node" style={nodeDelay(index)}>
                 <circle cx={cx} cy={cy} r="13" fill="rgba(6,8,16,0.92)" stroke="rgba(26,143,209,0.95)" strokeWidth="2" />
                 <circle cx={cx} cy={cy} r="4" fill={index === 3 ? "#8FB4CC" : "#1A8FD1"} />
               </g>
@@ -80,7 +96,7 @@ export function MissionConsole({ visual }: MissionConsoleProps) {
           <div className="absolute bottom-4 left-4 right-4 grid gap-2 sm:grid-cols-3">
             {[visual.signal, visual.optical, visual.package].map((item, index) => (
               <div key={item} className="rounded-sm border border-steel/20 bg-void/80 px-3 py-2">
-                <span className={index === 0 ? "text-steel" : "text-signal"}>●</span>
+                <span className={index === 0 ? "status-dot status-dot-muted" : "status-dot"} />
                 <span className="ml-2 font-display text-[0.68rem] uppercase tracking-[0.18em] text-mist">{item}</span>
               </div>
             ))}
@@ -100,9 +116,13 @@ export function MissionConsole({ visual }: MissionConsoleProps) {
 
 function ConsoleMetric({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-md border border-steel/20 bg-void/70 p-4">
+    <div className="metric-card rounded-md border border-steel/20 bg-void/70 p-4">
       <p className="font-display text-[0.68rem] uppercase tracking-[0.22em] text-steel">{label}</p>
       <p className="mt-2 font-display text-2xl font-bold uppercase tracking-[0.08em] text-cloud">{value}</p>
     </div>
   );
+}
+
+function nodeDelay(index: number): CSSProperties {
+  return { "--node-delay": `${700 + index * 140}ms` } as CSSProperties;
 }

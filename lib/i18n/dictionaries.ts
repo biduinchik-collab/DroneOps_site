@@ -35,7 +35,7 @@ export const dictionaries = {
     },
     hero: {
       eyebrow: "UAV autonomy and navigation systems",
-      title: "Navigation software for missions beyond reliable GPS",
+      title: "Navigation\nBeyond\nGPS",
       body:
         "Drone Operations develops optical navigation, satellite relocalization, mission planning, and operations software for UAV teams working where positioning, connectivity, and field conditions cannot be assumed.",
       primaryCta: "Request a technical demo",
