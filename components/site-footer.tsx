@@ -9,6 +9,11 @@ type SiteFooterProps = {
   dictionary: Dictionary;
 };
 
+const footerLinkMap = [
+  ["#solutions", "#workflow", "#deployment", "#use-cases"],
+  ["#contact", "#contact", "#contact"],
+] as const;
+
 export function SiteFooter({ locale, dictionary }: SiteFooterProps) {
   return (
     <footer className="border-t border-steel/20 bg-void">
@@ -21,13 +26,18 @@ export function SiteFooter({ locale, dictionary }: SiteFooterProps) {
           </p>
         </div>
 
-        {dictionary.footer.sections.map((section) => (
+        {dictionary.footer.sections.map((section, sectionIndex) => (
           <div key={section.title}>
             <h2 className="font-display text-sm font-bold uppercase tracking-[0.18em] text-cloud">{section.title}</h2>
             <ul className="mt-4 grid gap-3">
-              {section.links.map((link) => (
+              {section.links.map((link, linkIndex) => (
                 <li key={link}>
-                  <span className="text-sm font-light text-mist">{link}</span>
+                  <Link
+                    href={`/${locale}${footerLinkMap[sectionIndex]?.[linkIndex] ?? "#contact"}`}
+                    className="nav-link text-sm font-light text-mist transition duration-300 hover:text-cloud"
+                  >
+                    {link}
+                  </Link>
                 </li>
               ))}
             </ul>
