@@ -11,6 +11,7 @@
   --color-steel: #4a7a9b;
   --color-mist: #8fb4cc;
   --color-cloud: #edf0f4;
+  --color-whitebook: #f5f7f9;
 }
 
 * {
@@ -88,7 +89,7 @@ body {
   }
 
   .heading-xl {
-    @apply font-display text-5xl font-black uppercase leading-[0.92] text-cloud sm:text-6xl lg:text-7xl;
+    @apply font-display text-6xl font-black uppercase leading-[0.86] tracking-[0.04em] text-whitebook sm:text-7xl lg:text-8xl;
   }
 
   .heading-lg {

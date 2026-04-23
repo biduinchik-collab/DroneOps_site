@@ -28,7 +28,7 @@ export function HomePage({ locale, dictionary }: HomePageProps) {
           <div className="site-shell relative grid gap-12 py-20 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:py-24">
             <div className="hero-copy">
               <p className="micro-label">{dictionary.hero.eyebrow}</p>
-              <h1 className="heading-xl mt-5 max-w-4xl whitespace-pre-line">{dictionary.hero.title}</h1>
+              <HeroTitle title={dictionary.hero.title} />
               <p className="body-lead mt-7 max-w-2xl">{dictionary.hero.body}</p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <ButtonLink href={`/${locale}#contact`}>{dictionary.hero.primaryCta}</ButtonLink>
@@ -279,6 +279,18 @@ function TechnicalIcon({ index }: { index: number }) {
         <circle cx="36" cy="36" r="27" stroke="rgba(143,180,204,0.22)" strokeWidth="1.5" />
       </svg>
     </div>
+  );
+}
+
+function HeroTitle({ title }: { title: string }) {
+  return (
+    <h1 className="heading-xl mt-5 max-w-4xl">
+      {title.split("\n").map((line, index) => (
+        <span key={`${line}-${index}`} className={index === 1 ? "block text-signal" : "block"}>
+          {line}
+        </span>
+      ))}
+    </h1>
   );
 }
 

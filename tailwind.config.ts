@@ -16,6 +16,7 @@ const config: Config = {
         steel: "#4A7A9B",
         mist: "#8FB4CC",
         cloud: "#EDF0F4",
+        whitebook: "#F5F7F9",
         signal: "#1A8FD1",
         ink: "#0C1A2E",
       },
