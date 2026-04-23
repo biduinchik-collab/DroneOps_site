@@ -22,6 +22,18 @@ npm run typecheck
 npm run build
 ```
 
+## Vercel Deployment
+
+This project is a Next.js application. Vercel should use the Next.js framework preset and the default Next.js output, not a static `public` output directory.
+
+The repo-level `vercel.json` sets:
+
+- `framework: "nextjs"`
+- `buildCommand: "npm run build"`
+- `outputDirectory: null`
+
+If a deployment still fails with `No Output Directory named "public" found`, clear the Output Directory override in Vercel Project Settings.
+
 ## Contact Form
 
 The demo request API validates form input and returns a success response locally. To forward submissions to a CRM, secure intake service, or automation endpoint, set:
