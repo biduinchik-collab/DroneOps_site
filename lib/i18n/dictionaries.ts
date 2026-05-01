@@ -14,7 +14,7 @@ export const dictionaries = {
       siteName: "DroneOps",
       markName: "DRONEOPS",
       tagline: "Visual Navigation Systems",
-      contactEmail: "andrew@droneoperations.ai",
+      contactEmail: "sales@droneoperations.ai",
       classifiedNotice:
         "For sensitive programs, share only non-classified information through this public form.",
     },
@@ -301,7 +301,7 @@ export const dictionaries = {
       siteName: "DroneOps",
       markName: "DRONEOPS",
       tagline: "Системи візуальної навігації",
-      contactEmail: "andrew@droneoperations.ai",
+      contactEmail: "sales@droneoperations.ai",
       classifiedNotice:
         "Для чутливих програм передавайте через цю публічну форму лише несекретну інформацію.",
     },
