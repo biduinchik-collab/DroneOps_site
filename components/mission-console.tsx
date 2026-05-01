@@ -78,10 +78,10 @@ export function MissionConsole({ visual }: MissionConsoleProps) {
             <g transform="translate(390 126)">
               <rect width="142" height="54" rx="3" fill="rgba(10,13,18,0.88)" stroke="rgba(74,122,155,0.35)" />
               <text x="14" y="22" fill="#8FB4CC" fontSize="12" fontFamily="Arial" letterSpacing="1.5">
-                NAV ESTIMATE
+                {visual.navEstimate.toUpperCase()}
               </text>
               <text x="14" y="40" fill="#EDF0F4" fontSize="13" fontFamily="Arial">
-                corridor hold
+                {visual.corridorHold}
               </text>
             </g>
           </svg>
@@ -104,10 +104,10 @@ export function MissionConsole({ visual }: MissionConsoleProps) {
         </div>
 
         <div className="grid gap-3">
-          <ConsoleMetric label={visual.telemetry} value="LIVE" />
-          <ConsoleMetric label={visual.altitude} value="420 M" />
-          <ConsoleMetric label={visual.battery} value="78%" />
-          <ConsoleMetric label={visual.link} value="MESH" />
+          <ConsoleMetric label={visual.telemetry} value={visual.live} />
+          <ConsoleMetric label={visual.altitude} value={visual.altitudeValue} />
+          <ConsoleMetric label={visual.battery} value={visual.batteryValue} />
+          <ConsoleMetric label={visual.link} value={visual.linkValue} />
         </div>
       </div>
     </div>

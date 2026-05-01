@@ -13,8 +13,8 @@ type SiteHeaderProps = {
 
 export function SiteHeader({ locale, dictionary }: SiteHeaderProps) {
   return (
-    <header className="sticky top-0 z-50 border-b border-steel/20 bg-void/90 backdrop-blur-xl">
-      <div className="site-shell flex min-h-20 items-center justify-between gap-4">
+    <header className="sticky top-0 z-50 border-b border-[#DDE5EF] bg-white/92 backdrop-blur-xl">
+      <div className="site-shell flex min-h-[4.5rem] items-center justify-between gap-3 py-3">
         <Logo href={`/${locale}`} label={`${dictionary.common.siteName} home`} compact />
 
         <nav aria-label="Primary navigation" className="hidden items-center gap-7 lg:flex">
@@ -22,30 +22,34 @@ export function SiteHeader({ locale, dictionary }: SiteHeaderProps) {
             <Link
               key={item.href}
               href={`/${locale}${item.href}`}
-              className="nav-link font-display text-sm font-medium uppercase tracking-[0.12em] text-steel transition duration-300 hover:text-cloud"
+              className="nav-link font-display text-sm font-semibold uppercase text-[#526070] transition duration-300 hover:text-[#07111F]"
             >
               {item.label}
             </Link>
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex shrink-0 items-center gap-2">
           <LanguageSwitcher locale={locale} dictionary={dictionary} />
           <ButtonLink href={`/${locale}#contact`} className="hidden sm:inline-flex">
             {dictionary.nav.cta}
           </ButtonLink>
 
-          <details className="relative lg:hidden">
-            <summary className="button-premium inline-flex min-h-10 cursor-pointer list-none items-center rounded-sm border border-steel/25 px-3 font-display text-xs font-bold uppercase tracking-[0.18em] text-cloud transition hover:border-signal/60">
-              {dictionary.nav.mobileSummary}
+          <details className="relative inline-flex flex-none lg:hidden">
+            <summary
+              aria-label={dictionary.nav.mobileSummary}
+              className="button-premium inline-flex min-h-10 min-w-10 cursor-pointer list-none items-center justify-center rounded-sm border border-[#CBD6E2] px-2.5 font-display text-lg font-bold uppercase text-[#0B1E33] transition hover:border-[#1A6FC4]"
+            >
+              <span aria-hidden="true">☰</span>
+              <span className="sr-only">{dictionary.nav.mobileSummary}</span>
             </summary>
-            <div className="menu-panel absolute right-0 mt-3 w-64 rounded-md border border-steel/20 bg-obsidian p-3 shadow-glow">
+            <div className="menu-panel absolute right-0 mt-3 w-64 rounded-md border border-[#CBD6E2] bg-white p-3 shadow-xl">
               <nav aria-label="Mobile navigation" className="grid gap-1">
                 {dictionary.nav.items.map((item) => (
                   <Link
                     key={item.href}
                     href={`/${locale}${item.href}`}
-                    className="rounded-sm px-3 py-3 font-display text-sm font-medium uppercase tracking-[0.12em] text-mist transition duration-300 hover:bg-panel hover:text-cloud"
+                    className="rounded-sm px-3 py-3 font-display text-sm font-semibold uppercase text-[#526070] transition duration-300 hover:bg-[#F5F7FA] hover:text-[#07111F]"
                   >
                     {item.label}
                   </Link>

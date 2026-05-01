@@ -12,8 +12,8 @@ export function Logo({ href = "/", label, compact = false }: LogoProps) {
       <LogoMark className={compact ? "h-6 w-6" : "h-8 w-7"} />
       <span
         className={[
-          "font-display font-black uppercase leading-none text-cloud",
-          compact ? "text-xl tracking-[0.12em]" : "text-2xl tracking-[0.14em]",
+          "font-display font-black uppercase leading-none text-[#07111F]",
+          compact ? "text-lg sm:text-xl" : "text-2xl",
         ].join(" ")}
       >
         DRONEOPS
@@ -35,9 +35,9 @@ type LogoMarkProps = {
 export function LogoMark({ className = "h-8 w-7" }: LogoMarkProps) {
   return (
     <svg className={className} viewBox="0 0 40 46" fill="none" aria-hidden="true">
-      <line x1="0" y1="7" x2="40" y2="7" stroke="#1A8FD1" strokeWidth="2.7" strokeLinecap="round" />
-      <polygon points="20,43 3,9 37,9" fill="none" stroke="#E8EDF2" strokeWidth="2.7" strokeLinejoin="round" />
-      <circle cx="20" cy="43" r="3.7" fill="#1A8FD1" />
+      <line x1="0" y1="7" x2="40" y2="7" stroke="#1A6FC4" strokeWidth="2.7" strokeLinecap="round" />
+      <polygon points="20,43 3,9 37,9" fill="none" stroke="#0B1E33" strokeWidth="2.7" strokeLinejoin="round" />
+      <circle cx="20" cy="43" r="3.7" fill="#E05A1A" />
     </svg>
   );
 }

@@ -73,7 +73,7 @@ export function ContactForm({ locale, contact, common }: ContactFormProps) {
       />
 
       <label className="grid gap-2" htmlFor="context">
-        <span className="font-display text-xs font-semibold uppercase tracking-[0.18em] text-mist">
+        <span className="font-display text-xs font-semibold uppercase text-[#526070]">
           {contact.fields.context}
         </span>
         <textarea
@@ -82,28 +82,28 @@ export function ContactForm({ locale, contact, common }: ContactFormProps) {
           placeholder={contact.placeholders.context}
           rows={5}
           required
-          className="min-h-36 resize-y rounded-md border border-steel/25 bg-void/70 px-4 py-3 text-base font-light leading-7 text-cloud placeholder:text-steel/70"
+          className="min-h-36 resize-y rounded-md border border-[#CBD6E2] bg-[#F7F8FA] px-4 py-3 text-base leading-7 text-[#07111F] placeholder:text-[#7A8796]"
         />
       </label>
 
-      <p id="contact-form-notice" className="text-sm font-light leading-6 text-steel">
+      <p id="contact-form-notice" className="text-sm leading-6 text-[#526070]">
         {common.classifiedNotice}
       </p>
 
       <button
         type="submit"
         disabled={state === "submitting"}
-        className="inline-flex min-h-12 items-center justify-center rounded-sm border border-signal bg-signal px-6 py-3 font-display text-sm font-bold uppercase tracking-[0.16em] text-white transition duration-200 hover:border-[#44B5EF] hover:bg-[#44B5EF] disabled:cursor-wait disabled:opacity-70"
+        className="inline-flex min-h-12 items-center justify-center rounded-sm border border-[#1A6FC4] bg-[#1A6FC4] px-6 py-3 font-display text-sm font-bold uppercase text-white transition duration-200 hover:border-[#0B5EA8] hover:bg-[#0B5EA8] disabled:cursor-wait disabled:opacity-70"
       >
         {state === "submitting" ? contact.sending : contact.submit}
       </button>
 
       <div aria-live="polite" className="min-h-6 text-sm font-light leading-6">
-        {state === "success" ? <p className="text-mist">{contact.success}</p> : null}
+        {state === "success" ? <p className="text-[#526070]">{contact.success}</p> : null}
         {state === "error" ? (
-          <p className="text-mist">
+          <p className="text-[#526070]">
             {contact.error}{" "}
-            <a className="text-signal underline-offset-4 hover:underline" href={`mailto:${common.contactEmail}`}>
+            <a className="text-[#1A6FC4] underline-offset-4 hover:underline" href={`mailto:${common.contactEmail}`}>
               {common.contactEmail}
             </a>
           </p>
@@ -130,7 +130,7 @@ function Field({
 }) {
   return (
     <label className="grid gap-2" htmlFor={id}>
-      <span className="font-display text-xs font-semibold uppercase tracking-[0.18em] text-mist">{label}</span>
+      <span className="font-display text-xs font-semibold uppercase text-[#526070]">{label}</span>
       <input
         id={id}
         name={id}
@@ -138,7 +138,7 @@ function Field({
         placeholder={placeholder}
         autoComplete={autoComplete}
         required={required}
-        className="min-h-12 rounded-md border border-steel/25 bg-void/70 px-4 text-base font-light text-cloud placeholder:text-steel/70"
+        className="min-h-12 rounded-md border border-[#CBD6E2] bg-[#F7F8FA] px-4 text-base text-[#07111F] placeholder:text-[#7A8796]"
       />
     </label>
   );
